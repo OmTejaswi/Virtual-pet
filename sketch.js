@@ -5,7 +5,9 @@ var feedBtn, addBtn;
 
 var db;
 
-var fs = 0;
+var fs;
+
+var feedRead = 0;
 
 var milkBottle =[];
 
@@ -35,10 +37,11 @@ function setup() {
 
   db.ref("foodStock").on("value",function(data) {
      fs = data.val();
-    
   });
 
-  
+  db.ref("feedTime").on("value",function(data){
+    feedRead = data.val();
+  })
   
 
 }
@@ -77,11 +80,14 @@ function draw() {
       milkBottle[i].destroy();
     }
     lastFeed = hour();
+    //lastFeed = feedRead;
+
+    db.ref("/").update({
+      feedTime: lastFeed
+    })
   })
 
-  db.ref("/").update({
-    feedTime: lastFeed
-  })
+  
   
 
    console.log(fs);
@@ -90,7 +96,7 @@ function draw() {
 
   textSize(20);
   fill("black");
-  text("Last Feed:"+ lastFeed,800,100);
+  text("Last Feed:"+ feedRead,800,100);
 }
 
 //function to read food Stock
