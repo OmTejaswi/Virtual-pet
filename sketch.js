@@ -96,7 +96,11 @@ function draw() {
 
   textSize(20);
   fill("black");
-  text("Last Feed:"+ feedRead,800,100);
+ if(feedRead >= 12) {
+  text("Last Feed:"+ feedRead + " PM",800,100);
+ } else {
+  text("Last Feed:"+ feedRead + " AM",800,100);
+ }
 }
 
 //function to read food Stock
