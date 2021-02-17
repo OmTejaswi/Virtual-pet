@@ -36,12 +36,7 @@ function setup() {
     
   });
 
-  for(var i = 0; i < fs; i++)
-  {
-   milkBottle.push(createSprite(i+100,200,20,20));
-   milkBottle[i].scale = 0.1;
-   milkBottle[i].addImage(bottle);
-  }
+  
   
 
 }
@@ -65,6 +60,15 @@ function draw() {
     })
   })
 
+  for(var i = 0; i < fs; i++)
+  {
+   milkBottle.push(createSprite((i*30)+100,200));
+  }
+
+  for(var i = 0; i < milkBottle.length; i++) {
+    milkBottle[i].scale = 0.1;
+    milkBottle[i].addImage(bottle);
+  }
   
   
 
