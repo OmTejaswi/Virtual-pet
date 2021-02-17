@@ -36,7 +36,7 @@ function setup() {
     
   });
 
-  for(var i = 0; i < 200; i++)
+  for(var i = 0; i < fs; i++)
   {
    milkBottle.push(createSprite(i+100,200,20,20));
    milkBottle[i].scale = 0.1;
