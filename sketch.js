@@ -9,6 +9,8 @@ var fs = 0;
 
 var milkBottle =[];
 
+var lastFeed = 0;
+
 function preload(){
   sadDog=loadImage("Images/Dog.png");
   happyDog=loadImage("Images/happy dog.png");
@@ -43,6 +45,7 @@ function setup() {
 
 function draw() {
   background(46,139,87);
+
   
   addBtn.mousePressed(function() {
     fs +=1;
@@ -52,13 +55,7 @@ function draw() {
     })
   })
 
-  feedBtn.mousePressed(function() {
-    fs -=1;
-    
-    db.ref("/").update({
-      foodStock: fs
-    })
-  })
+  
 
   for(var i = 0; i < fs; i++)
   {
@@ -70,11 +67,30 @@ function draw() {
     milkBottle[i].addImage(bottle);
   }
   
+  feedBtn.mousePressed(function() {
+    fs -=1;
+    
+    db.ref("/").update({
+      foodStock: fs
+    })
+    for(var i = 0; i < milkBottle.length; i++) {
+      milkBottle[i].destroy();
+    }
+    lastFeed = hour();
+  })
+
+  db.ref("/").update({
+    feedTime: lastFeed
+  })
   
 
    console.log(fs);
 
   drawSprites();
+
+  textSize(20);
+  fill("black");
+  text("Last Feed:"+ lastFeed,800,100);
 }
 
 //function to read food Stock
