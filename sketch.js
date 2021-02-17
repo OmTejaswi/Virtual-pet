@@ -5,7 +5,7 @@ var feedBtn, addBtn;
 
 var db;
 
-var fs;
+var fs = 0;
 
 var milkBottle =[];
 
