@@ -63,6 +63,12 @@ function draw() {
     })
   })
 
+  if(fs <= 0) {
+    fs = 0
+  } else if(fs >= 20) {
+    fs = 20;
+  }
+
   
 
   for(var i = 0; i < fs; i++)
@@ -97,9 +103,11 @@ function draw() {
   } else {
     dog.changeImage("happy",happyDog);
   }
+
+  
   
 
-   //console.log(fs);
+   console.log(fs);
 
   drawSprites();
 
