@@ -107,7 +107,7 @@ function draw() {
   
   
 
-   console.log(fs);
+   //console.log(fs);
 
   drawSprites();
 
