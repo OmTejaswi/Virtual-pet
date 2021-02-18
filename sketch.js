@@ -13,6 +13,8 @@ var milkBottle =[];
 
 var lastFeed = 0;
 
+var hourDetector;
+
 function preload(){
   sadDog=loadImage("Images/Dog.png");
   happyDog=loadImage("Images/happy dog.png");
@@ -24,7 +26,8 @@ function setup() {
   createCanvas(1000,400);
   
   dog=createSprite(800,200,150,150);
-  dog.addImage(sadDog);
+  dog.addImage("sad",sadDog);
+  dog.addImage("happy",happyDog);
   dog.scale=0.15;
 
   feedBtn = createButton("Feed Dog");
@@ -48,6 +51,8 @@ function setup() {
 
 function draw() {
   background(46,139,87);
+
+  hourDetector = hour();
 
   
   addBtn.mousePressed(function() {
@@ -87,7 +92,11 @@ function draw() {
     })
   })
 
-  
+  if(feedRead < hourDetector-2) {
+    dog.changeImage("sad",sadDog);
+  } else {
+    dog.changeImage("happy",happyDog);
+  }
   
 
    //console.log(fs);
